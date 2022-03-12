@@ -2,7 +2,7 @@ clear
 clc
 close all
 
-[audioIn,fs] = audioread("audios/Frase 1-1-2.m4a");
+[audioIn,fs] = audioread("audios/Frase 1-2.m4a");
 
 audioIn = mean(audioIn, 2);
 y = audioIn(1:fs*3);
@@ -41,7 +41,11 @@ tiledlayout(2,1);
 nexttile;
 mfccCoeffs = mfcc(y,fs);
 surfc(mfccCoeffs'), colormap parula, shading flat, view([0 90]);
+set(gca,'xtick',[],'ytick',[])
+pbaspect([8 3 1])
 title('MFCC');
+
+colormap autumn
 
 nexttile;
 mfccCoeffs = mfcc(y_ruido,fs);

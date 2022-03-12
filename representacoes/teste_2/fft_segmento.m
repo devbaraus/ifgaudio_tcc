@@ -2,9 +2,9 @@ clear
 clc
 close all
 
-idxSegmentoSelecionado = [26,2]; % arquivo segmento
-intensidadePotenciaRuido = 0:0.05:1;
-numExperimentos = 10000;	
+idxSegmentoSelecionado = [15,2]; % arquivo segmento
+intensidadePotenciaRuido = 0:0.1:1;
+numExperimentos = 100;	
 plotAudio = 0;
 
 %% Faz um levantamento dos arquivos de audio disponiveis para criacao da "base de dados de treinamento"
@@ -25,7 +25,7 @@ qtdSegmentosArr = zeros(numArquivos,1);
 
 parfor aa = 1:numArquivos
 	[audioIn, fs] = audioread(strcat(strPasta, xx(aa, :)));
-	audioIn1 = mean(audioIn, 2);
+	audioIn = mean(audioIn, 2);
     
     qtdSegmentos = 0;
     flag = 1;
@@ -46,8 +46,8 @@ end
 
 %% Guarda os segmentos de cada audio e as representações de cada segmento
 maxQtdSegmentos = max(qtdSegmentosArr);
-segmentosAudiosMat = zeros(tamanhoFsSegmento,numArquivos,maxQtdSegmentos);
-repAudiosMat = zeros(tamFFT,numArquivos,maxQtdSegmentos);
+segmentosAudiosMat = nan(tamanhoFsSegmento,numArquivos,maxQtdSegmentos);
+repAudiosMat = nan(tamFFT,numArquivos,maxQtdSegmentos);
 
 for aa = 1:numArquivos
     [audioIn, fs] = audioread(strcat(strPasta, xx(aa, :)));
@@ -123,4 +123,4 @@ ylim([0 100]);
 title(sprintf('Representação FFT (%i experimentos)', numExperimentos));
 grid on;
 saveas(gcf,sprintf('fft_graph_%i.fig', numExperimentos));
-close(f);
+% close(f);

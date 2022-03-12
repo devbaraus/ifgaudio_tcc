@@ -40,7 +40,6 @@ end
 %% Faz a comparação de cada segmento com o áudio
 % tiledlayout(ceil(sqrt(qtdSegmentos)),floor(sqrt(qtdSegmentos)));
 clf;
-figure(1);
 tiledlayout('flow');
 for i = 1:qtdSegmentos
     if i == 1
@@ -53,33 +52,13 @@ for i = 1:qtdSegmentos
 %         title(sprintf('Segmento %i',i
         set(gca,'xtick',[], 'ytick',[])
         xlim('tight')
-        pbaspect([8 3 1])
         hold off;
     end
 
 end
-saveas(gca, 'segmento.png')
-
-figure(2);
-plot(linspace(0, size(audioIn,1)/fs, size(audioIn, 1)), audioIn);
-set(gca,'xtick',[], 'ytick',[])
-xlim('tight')
-pbaspect([8 3 1])
-hold off;
-saveas(gca, 'trim.png')
-
 intensidade = 0.4;
-SNR = mag2db(1/intensidade);
-potencia_sinal = rms(audioIn)^2;
-ruido_aditivo = randn(1, size(audioIn,1))*std(audioIn)/db2mag(SNR);
-ruido_aditivo = ruido_aditivo';
 
-figure(3);
-plot(linspace(0, size(audioIn,1)/fs, size(audioIn, 1)), audioIn);
-hold on;
-plot(linspace(0, size(ruido_aditivo,1)/fs, size(ruido_aditivo, 1)), ruido_aditivo);
-set(gca,'xtick',[], 'ytick',[])
-xlim('tight')
-pbaspect([8 3 1])
-hold off;
-saveas(gca, 'ruido.png')
+SNR = mag2db(1/intensidade(intensidade_idx));
+media_audios = mean(ifgaudioData.Data,1);
+potencia_sinal = rms(media_audios)^2;
+tamanho_segmento = size(media_audios,2);

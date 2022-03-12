@@ -18,15 +18,15 @@ Escolheu-se um arquivo tido como instância de inferência, que foi infectado po
 Calculou-se o erro quadrático acumulado entre a instância de inferência e a base de dados em 100 experimentos independentes (Monte-Carlo) por valor de SNR. Anotou-se a taxa de acerto para cada um desses valores.
 
 Resultados observados:
-FFT (10000 experimentos):
+- FFT (10000 experimentos):
 ![fft_graph.png](fft_graph.png)
-STFT (10000 experimentos):
+- STFT (10000 experimentos):
 ![stft_graph.png](stft_graph.png)
-MFCC (10000 experimentos):
+- MFCC (10000 experimentos):
 ![mfcc_graph.png](mfcc_graph.png)
-GTCC (10000 experimentos):
+- GTCC (10000 experimentos):
 ![gtcc_graph.png](gtcc_graph.png)
-LPC (10000 experimentos):
+- LPC (10000 experimentos):
 ![lpc_graph.png](lpc_graph.png)
 
 Conclusões:

@@ -26,7 +26,7 @@ qtdSegmentosArr = zeros(numArquivos,1);
 
 parfor aa = 1:numArquivos
 	[audioIn, fs] = audioread(strcat(strPasta, xx(aa, :)));
-	audioIn1 = mean(audioIn, 2);
+	audioIn = mean(audioIn, 2);
     
     qtdSegmentos = 0;
     flag = 1;

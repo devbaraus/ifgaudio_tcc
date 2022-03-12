@@ -1,1 +1,6 @@
 */**/audios
+/representacoes/**/*.wav
+/representacoes/**/*.m4a
+/representacoes/**/*.png
+/representacoes/**/*.fig
+/representacoes/**/*.mat
