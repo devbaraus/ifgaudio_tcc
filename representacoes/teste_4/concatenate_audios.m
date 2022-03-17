@@ -1,5 +1,5 @@
-rootdir = './base_portuguese_trim/';
-output_dir = './base_portuguese_concat/';
+rootdir = './base_pessoas_trim/';
+output_dir = './base_pessoas_concat/';
 folders = dir(rootdir);
 folders = {folders([folders.isdir]).name};
 folders = folders(~ismember(folders, {'.', '..'}));

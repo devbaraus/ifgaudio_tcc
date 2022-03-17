@@ -1,4 +1,4 @@
-rootdir = '../base_portuguese/';
+rootdir = './base_pessoas/';
 filelist = dir(fullfile(rootdir, '**\*.wav'));  %get list of files and folders in any subfolder
 filelist = filelist(~[filelist.isdir]);  %remove folders from list
 
@@ -18,7 +18,8 @@ for aa = 1:size(filelistPath,1)
     fs = 24000;
 
     classe_audio = split(filelist(aa).folder,'\');
-    classe_audio = string(classe_audio(5));
+    classe_audio = string(classe_audio(6));
+    fprintf(classe_audio);
     audio_name = filelist(aa).name;
 
     idx = detectSpeech(audioIn, fs);
@@ -29,7 +30,7 @@ for aa = 1:size(filelistPath,1)
         
         audioIn = audioIn(first_idx:last_idx,:);   
     
-        folder_name = sprintf('base_portuguese_trim\\%s', classe_audio);
+        folder_name = sprintf('base_pessoas_trim\\%s', classe_audio);
         
         if ~exist(folder_name, 'dir')
            mkdir(folder_name)

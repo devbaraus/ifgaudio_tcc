@@ -3,11 +3,11 @@ clear;
 clc;
 
 trim = true;
-concat = true;
+concat = false;
 overlap = 0;
 tempoSegmento = 1;
 
-rootdir = sprintf('base_portuguese_concat');
+rootdir = sprintf('base_pessoas_trim');
 
 
 filelist = dir(fullfile(rootdir, '**\*.wav'));  %get list of files and folders in any subfolder
@@ -87,7 +87,7 @@ ifgaudioData.Labels = labelsAudios(1:contadorPos-1,:);
 hist_classes = countlabels(string(ifgaudioData.Labels(:,1)));
 bar(hist_classes.Label,hist_classes.Count)
 
-filename = sprintf('ifgaudioData%iseg',tempoSegmento);
+filename = sprintf('ifgpessoas%iseg',tempoSegmento);
 foldername = '';
 
 if(concat)
@@ -101,6 +101,10 @@ end
 if (overlap < 1)
     filename = sprintf('%s_overlap%i', filename, overlap * 100);
     foldername = sprintf('%s_overlap%i', foldername, overlap * 100);
+end
+
+if ~exist(sprintf('./dataset/%s', foldername), 'dir')
+   mkdir(sprintf('./dataset/%s', foldername))
 end
 
 savefig(sprintf('./dataset/%s/%s.fig', foldername, filename))
